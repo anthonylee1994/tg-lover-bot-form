@@ -55,9 +55,9 @@ export const UserInfoForm = React.memo(() => {
         formData.selfIntro = values.selfIntro;
         formData.relationshipCriteria = values.relationshipCriteria;
 
-        if (values.occupation) formData.occupation = values.occupation;
-        if (values.salary) formData.salary = Number(values.salary);
-        if (values.education) formData.education = values.education;
+        formData.occupation = values.occupation ? values.occupation : null;
+        formData.salary = values.salary ? Number(values.salary) : null;
+        formData.education = values.education ? values.education : null;
 
         Telegram.WebApp.sendData(JSON.stringify(formData));
         Telegram.WebApp.close();
