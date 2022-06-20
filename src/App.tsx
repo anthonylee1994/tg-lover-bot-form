@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {UserInfoEditPage} from "pages/user-info";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = React.memo(() => {
+    // React.useEffect(() => {
+    //     Telegram.WebApp.ready();
+    //     Telegram.WebApp.MainButton.isVisible = true;
+    //     Telegram.WebApp.MainButton.text = "Clicked!";
 
-export default App;
+    //     Telegram.WebApp.onEvent("mainButtonClicked", () => {
+    //         Telegram.WebApp.MainButton.text = "Clicked!";
+
+    //         try {
+    //             Telegram.WebApp.sendData(JSON.stringify({fuck: 1}));
+    //             Telegram.WebApp.close();
+    //         } catch (e) {}
+    //     });
+    // }, []);
+
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="user-info" element={<UserInfoEditPage />} />
+            </Routes>
+        </BrowserRouter>
+    );
+});
