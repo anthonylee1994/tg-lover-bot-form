@@ -106,7 +106,7 @@ export const UserInfoForm = React.memo(() => {
                         placeholders={["樣靚", "身材正", "人品好"]}
                     />
 
-                    <Button w="full" ref={submitButtonRef} type="submit" mt={4}>
+                    <Button display="none" w="full" ref={submitButtonRef} type="submit" mt={4}>
                         提交
                     </Button>
                 </Form>
