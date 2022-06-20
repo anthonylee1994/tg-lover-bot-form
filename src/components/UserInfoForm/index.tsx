@@ -46,7 +46,7 @@ export const UserInfoForm = React.memo(() => {
         if (values.salary) formData.salary = Number(values.salary);
         if (values.education) formData.education = values.education;
 
-        Telegram.WebApp.sendData(formData);
+        Telegram.WebApp.sendData(JSON.stringify(formData));
         Telegram.WebApp.close();
     }, []);
 
