@@ -12,6 +12,8 @@ import {Smoking} from "./enums/Smoking";
 import {Education} from "./enums/Education";
 import {MultipleInputField} from "components/form/MultipleInputField";
 import {Telegram} from "utils/Telegram";
+// @ts-ignore
+import base64 from "base64-utf8";
 
 export interface FormValues {
     name: string;
@@ -30,6 +32,17 @@ export interface FormValues {
 export const UserInfoForm = React.memo(() => {
     const submitButtonRef = React.useRef<HTMLButtonElement>(null);
     const formRef = React.useRef<HTMLFormElement>(null);
+
+    const userData: FormValues | null = React.useMemo(() => {
+        const params = new URL(window.location.href).searchParams;
+        const userData = params.get("userData");
+
+        if (!userData) {
+            return null;
+        }
+
+        return JSON.parse(base64.decode(userData));
+    }, []);
 
     const onSubmit = React.useCallback((values: FormValues) => {
         const formData: any = {};
@@ -53,25 +66,32 @@ export const UserInfoForm = React.memo(() => {
     React.useEffect(() => {
         Telegram.WebApp.ready();
         Telegram.WebApp.MainButton.isVisible = true;
-        Telegram.WebApp.MainButton.text = "提交";
+        Telegram.WebApp.MainButton.text = userData ? "更改" : "提交";
 
         Telegram.WebApp.onEvent("mainButtonClicked", () => {
             submitButtonRef.current?.click();
         });
-    }, []);
+
+        return () => {
+            Telegram.WebApp.offEvent("mainButtonClicked");
+        };
+    }, [userData]);
 
     return (
         <Formik<FormValues>
             initialValues={{
-                name: "",
-                gender: Gender.男,
-                age: null,
-                height: null,
-                goalRelationship: GoalRelationship.穩定關係,
-                smoking: Smoking.不吸煙,
-                education: "",
-                selfIntro: [""],
-                relationshipCriteria: [""],
+                name: userData?.name || "",
+                gender: userData?.gender || Gender.男,
+                age: userData?.age || null,
+                height: userData?.height || null,
+                goalRelationship: userData?.goalRelationship || GoalRelationship.穩定關係,
+                smoking: userData?.smoking || Smoking.不吸煙,
+                education: userData?.education || "",
+                occupation: userData?.occupation || "",
+                salary: Number(userData?.salary) || undefined,
+                selfIntro: userData?.selfIntro && Array.isArray(userData?.selfIntro) && userData?.selfIntro.length >= 1 ? userData?.selfIntro : [""],
+                relationshipCriteria:
+                    userData?.relationshipCriteria && Array.isArray(userData?.relationshipCriteria) && userData?.relationshipCriteria.length >= 1 ? userData?.relationshipCriteria : [""],
             }}
             validationSchema={formSchema}
             onSubmit={onSubmit}
