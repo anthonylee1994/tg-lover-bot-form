@@ -70,8 +70,8 @@ export const UserInfoForm = React.memo(() => {
                 goalRelationship: GoalRelationship.穩定關係,
                 smoking: Smoking.不吸煙,
                 education: "",
-                selfIntro: [],
-                relationshipCriteria: [],
+                selfIntro: [""],
+                relationshipCriteria: [""],
             }}
             validationSchema={formSchema}
             onSubmit={onSubmit}

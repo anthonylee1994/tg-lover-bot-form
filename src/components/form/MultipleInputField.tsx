@@ -1,7 +1,6 @@
 import React from "react";
 import {Button, Flex, FormControl, FormControlProps, FormErrorMessage, FormLabel, IconButton, Input, InputGroup, InputRightElement} from "@chakra-ui/react";
 import {AddIcon, CloseIcon} from "@chakra-ui/icons";
-import range from "lodash/range";
 import {Field, FieldArray, FieldProps, useFormikContext} from "formik";
 import {FormValues} from "../UserInfoForm";
 
@@ -25,13 +24,6 @@ export const MultipleInputField = React.memo<Props>(({name, label, minRow, maxRo
     error = Array.isArray(error) ? error.filter(Boolean)[0] : error;
 
     const touched = form.touched[name as keyof FormValues] as boolean;
-
-    React.useEffect(() => {
-        form.setFieldValue(
-            name,
-            range(minRow).map(() => "")
-        );
-    }, [minRow]);
 
     return (
         <FieldArray
