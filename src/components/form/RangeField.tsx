@@ -33,7 +33,7 @@ export const RangeField = React.memo<Props>(({name, label, min, max, unit, formC
                 aria-label={["min", "max"]}
                 min={min}
                 max={max}
-                defaultValue={[min, max]}
+                defaultValue={[lowerBound, upperBound]}
                 onChange={onChange}
                 onMouseEnter={() => setShowTooltip(true)}
                 onMouseLeave={() => setShowTooltip(false)}
