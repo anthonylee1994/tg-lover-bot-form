@@ -35,8 +35,8 @@ export const RangeField = React.memo<Props>(({name, label, min, max, unit, formC
                 max={max}
                 defaultValue={[lowerBound, upperBound]}
                 onChange={onChange}
-                onMouseEnter={() => setShowTooltip(true)}
-                onMouseLeave={() => setShowTooltip(false)}
+                onTouchStart={() => setShowTooltip(true)}
+                onTouchEnd={() => setShowTooltip(false)}
             >
                 <RangeSliderMark value={min} mt="1" fontSize="sm">
                     {min}
@@ -50,10 +50,10 @@ export const RangeField = React.memo<Props>(({name, label, min, max, unit, formC
                     <RangeSliderFilledTrack />
                 </RangeSliderTrack>
 
-                <Tooltip hasArrow bg="blue.500" color="white" placement="bottom" isOpen={showTooltip} label={`${lowerBound}${unit}`}>
+                <Tooltip hasArrow bg="blue.500" color="white" placement="top" isOpen={showTooltip} label={`${lowerBound}${unit}`}>
                     <RangeSliderThumb index={0} />
                 </Tooltip>
-                <Tooltip hasArrow bg="blue.500" color="white" placement="bottom" isOpen={showTooltip} label={`${upperBound}${unit}`}>
+                <Tooltip hasArrow bg="blue.500" color="white" placement="top" isOpen={showTooltip} label={`${upperBound}${unit}`}>
                     <RangeSliderThumb index={1} />
                 </Tooltip>
             </RangeSlider>
