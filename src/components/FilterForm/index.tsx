@@ -47,6 +47,7 @@ export const FilterForm = React.memo(() => {
 
     React.useEffect(() => {
         Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
         Telegram.WebApp.MainButton.isVisible = true;
         Telegram.WebApp.MainButton.text = isEmpty(omit(userData, ["goalRelationship"])) ? "提交" : "更改";
 
