@@ -76,7 +76,7 @@ export const FilterForm = React.memo(() => {
                     <RangeField formControlProps={{mt: 2, mb: 5, px: 2}} label="身高" name="filterHeight" min={140} max={220} unit="cm" />
                     {userData?.goalRelationship ? <CheckboxField checkboxProps={{mt: 2, px: 2}} label={`只配對${GoalRelationship[userData.goalRelationship]}`} name="filterGoalRelationship" /> : null}
 
-                    <Button w="full" ref={submitButtonRef} type="submit" mt={4}>
+                    <Button display="none" w="full" ref={submitButtonRef} type="submit" mt={4}>
                         提交
                     </Button>
                 </Form>
