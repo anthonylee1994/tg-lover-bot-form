@@ -74,6 +74,8 @@ export const FilterForm = React.memo(() => {
                     <SelectField label="性別" name="filterGender" options={Object.values(FilterGender)} />
                     <RangeField formControlProps={{mt: 2, mb: 5, px: 2}} label="年齡" name="filterAge" min={13} max={99} unit="歲" />
                     <RangeField formControlProps={{mt: 2, mb: 5, px: 2}} label="身高" name="filterHeight" min={140} max={220} unit="cm" />
+
+                    {/*<CheckboxField checkboxProps={{mt: 2, px: 2}} label={`只配對`} name="filterGoalRelationship" />*/}
                     {userData?.goalRelationship ? <CheckboxField checkboxProps={{mt: 2, px: 2}} label={`只配對${GoalRelationship[userData.goalRelationship]}`} name="filterGoalRelationship" /> : null}
 
                     <Button display="none" w="full" ref={submitButtonRef} type="submit" mt={4}>

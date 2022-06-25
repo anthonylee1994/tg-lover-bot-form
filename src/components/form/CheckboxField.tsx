@@ -12,7 +12,7 @@ export const CheckboxField = React.memo<Props>(({name, label, checkboxProps}) =>
     return (
         <Field name={name}>
             {({field}: FieldProps) => (
-                <Checkbox {...field} {...checkboxProps}>
+                <Checkbox {...field} defaultChecked={field.value} {...checkboxProps}>
                     {label}
                 </Checkbox>
             )}
