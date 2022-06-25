@@ -10,6 +10,7 @@ import {Telegram} from "../../utils/Telegram";
 import {CheckboxField} from "../form/CheckboxField";
 import {GoalRelationship} from "../UserInfoForm/enums/GoalRelationship";
 import omit from "lodash/omit";
+import isEmpty from "lodash/isEmpty";
 
 export interface FormValues {
     filterGender: FilterGender;
@@ -47,7 +48,7 @@ export const FilterForm = React.memo(() => {
     React.useEffect(() => {
         Telegram.WebApp.ready();
         Telegram.WebApp.MainButton.isVisible = true;
-        Telegram.WebApp.MainButton.text = omit(userData, ["goalRelationship"]) ? "更改" : "提交";
+        Telegram.WebApp.MainButton.text = isEmpty(omit(userData, ["goalRelationship"])) ? "提交" : "更改";
 
         Telegram.WebApp.onEvent("mainButtonClicked", () => {
             submitButtonRef.current?.click();
