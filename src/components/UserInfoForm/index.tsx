@@ -65,6 +65,7 @@ export const UserInfoForm = React.memo(() => {
 
     React.useEffect(() => {
         Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
         Telegram.WebApp.MainButton.isVisible = true;
         Telegram.WebApp.MainButton.text = userData ? "更改" : "提交";
 
