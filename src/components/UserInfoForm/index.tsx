@@ -106,7 +106,7 @@ export const UserInfoForm = React.memo(() => {
                     <SelectField formControlProps={{mt: 2}} name="goalRelationship" label="尋找對象關係" options={Object.values(GoalRelationship)} />
                     <SelectField formControlProps={{mt: 2}} name="smoking" label="是否吸煙" options={Object.values(Smoking)} />
                     <TextField formControlProps={{mt: 2}} name="occupation" label="職業" placeholder="eg. IT狗" />
-                    <NumberField formControlProps={{mt: 2}} name="salary" label="月入" min={0} max={100_000_000} />
+                    <NumberField formControlProps={{mt: 2}} name="salary" label="月入" min={0} max={99_999_999} />
                     <SelectField formControlProps={{mt: 2}} name="education" label="學歷" options={Object.values(Education)} optional />
 
                     <MultipleInputField
